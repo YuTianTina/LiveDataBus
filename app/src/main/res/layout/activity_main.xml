@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mainAct"
+            type="com.yutiantina.livedatabus.MainActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnObserve"
+            android:text="主线程订阅发送信息"
+            android:onClick="@{()->mainAct.sendNormalEvent()}"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnObserveOnThread"
+            android:text="子线程订阅"
+            android:onClick="@{()->mainAct.sendThreadEvent()}"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnObserveSticky"
+            android:text="主线程粘性订阅"
+            android:onClick="@{()->mainAct.sendStickyEvent()}"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="移除订阅"
+            android:onClick="@{()->mainAct.jumpSecond()}"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送粘性消息2"
+            android:onClick="@{()->mainAct.sendStickyEvent()}"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转到ipc"
+            android:onClick="@{()->mainAct.runIpc()}"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转到Second"
+            android:onClick="@{()->mainAct.jumpSecond()}"
+            />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,27 @@
+@startuml
+
+abstract class LiveData<T>{
+-SafeIterableMap<Observer, ObserverWrapper> mObservers
+-int mVersion
+void getVersion()
+void setValue(T value)
+void postValue(T value)
+void observe(LifecycleOwner owner, Oberver observer)
+void observeForever(Observer observer)
+}
+LiveData+--ObserverWrapper
+-abstract class ObserverWrapper{
+#Observer mObserver
+#int mLastVersion
+void activeStateChanged(boolean newActive)
+}
+-class LifecycleBoundObserver extends ObserverWrapper implements GenericLifecycleObserver {
+LifecycleOwner mOwner
+}
+class LifecycleBoundObserver<<带生命周期感知的Observer包装类>>
+-class AlwaysActiveObserver extends ObserverWrapper{
+}
+interface GenericLifecycleObserver extends LifecycleObserver{
+void onStateChanged(LifecycleOwner source, Lifecycle.Event event)// 当状态变更时调用
+}
+@enduml
